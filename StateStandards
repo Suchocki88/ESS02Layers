@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layers of Time - Standards Alignment</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .selector-container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #34495e;
+            font-size: 18px;
+        }
+        select {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            background-color: white;
+            min-width: 300px;
+            cursor: pointer;
+        }
+        select:focus {
+            outline: none;
+            border-color: #2980b9;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+        .standards-content {
+            margin-top: 30px;
+            padding: 25px;
+            background-color: #ecf0f1;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+            min-height: 200px;
+        }
+        .standard-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .standard-code {
+            font-weight: bold;
+            color: #2980b9;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .standard-text {
+            color: #2c3e50;
+            line-height: 1.5;
+        }
+        .activity-note {
+            background-color: #e8f5e8;
+            border: 1px solid #4caf50;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #2e7d32;
+        }
+        .loading {
+            text-align: center;
+            color: #7f8c8d;
+            font-style: italic;
+            padding: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Layers of Time - Standards Alignment</h1>
+        
+        <div class="activity-note">
+            <strong>Activity Overview:</strong> Students build Play-Doh geological models showing sequences of events, then exchange models with other teams to practice relative dating principles (superposition, cross-cutting relationships, inclusions).
+        </div>
+
+        <div class="selector-container">
+            <label for="stateSelect">Select Your State Standards:</label>
+            <select id="stateSelect" onchange="showStandards()">
+                <option value="">Choose a state...</option>
+                <option value="ngss">Next Generation Science Standards (NGSS)</option>
+                <option value="alabama">Alabama</option>
+                <option value="california">California</option>
+                <option value="colorado">Colorado</option>
+                <option value="florida">Florida</option>
+                <option value="georgia">Georgia</option>
+                <option value="mississippi">Mississippi</option>
+                <option value="north_carolina">North Carolina</option>
+                <option value="ohio">Ohio</option>
+                <option value="pennsylvania">Pennsylvania (STEELS)</option>
+                <option value="texas">Texas (TEKS)</option>
+                <option value="virginia">Virginia</option>
+            </select>
+        </div>
+
+        <div id="standardsContent" class="standards-content">
+            <div class="loading">Select a state to view aligned standards</div>
+        </div>
+    </div>
+
+    <script>
+        const standardsData = {
+            ngss: [
+                {
+                    code: "MS-ESS1-4",
+                    text: "Construct a scientific explanation based on evidence from rock strata for how the geologic time scale is used to organize Earth's 4.6-billion-year-old history."
+                },
+                {
+                    code: "HS-ESS1-5",
+                    text: "Evaluate evidence of the past and current movements of continental and oceanic crust and the theory of plate tectonics to explain the ages of crustal rocks."
+                },
+                {
+                    code: "MS-ETS1-3",
+                    text: "Analyze data from tests to determine similarities and differences among several design solutions to identify the best characteristics of each that can be combined into a new solution."
+                }
+            ],
+            alabama: [
+                {
+                    code: "9-12.5",
+                    text: "Use relative and absolute dating principles to interpret the age of rock strata and the geologic time scale."
+                },
+                {
+                    code: "9-12.6",
+                    text: "Analyze and interpret data from rock strata to determine sequences of geologic events."
+                },
+                {
+                    code: "9-12.8",
+                    text: "Construct scientific explanations for phenomena related to the rock cycle."
+                }
+            ],
+            california: [
+                {
+                    code: "HS-ESS1-5",
+                    text: "Evaluate evidence of the past and current movements of continental and oceanic crust and the theory of plate tectonics to explain the ages of crustal rocks."
+                },
+                {
+                    code: "9-12.Investigation 3",
+                    text: "Students use principles of relative dating to sequence geologic events and construct Earth's timeline."
+                },
+                {
+                    code: "Earth Science 2c",
+                    text: "Students know that the rock record provides evidence for the relative age of rock formations and the geologic time scale."
+                }
+            ],
+            colorado: [
+                {
+                    code: "SC.HS.1.2",
+                    text: "The history of the universe, solar system, and Earth can be inferred from evidence left from past events."
+                },
+                {
+                    code: "SC.HS.1.3",
+                    text: "Earth's systems interact over a wide range of temporal and spatial scales."
+                },
+                {
+                    code: "SC.HS.2.1",
+                    text: "Matter has definite structure that determines characteristic physical and chemical properties."
+                }
+            ],
+            florida: [
+                {
+                    code: "SC.912.E.6.2",
+                    text: "Connect surface features to surface processes that are responsible for their formation."
+                },
+                {
+                    code: "SC.912.E.6.3",
+                    text: "Analyze the scientific theory of plate tectonics and identify related major processes and features as a result of moving plates."
+                },
+                {
+                    code: "SC.912.E.6.4",
+                    text: "Analyze how specific geologic processes and features are expressed in Florida and elsewhere."
+                }
+            ],
+            georgia: [
+                {
+                    code: "SES1.c",
+                    text: "Relate surface features of Earth to processes of the rock cycle (weathering, erosion, deposition, heat, and pressure)."
+                },
+                {
+                    code: "SES2.a",
+                    text: "Describe the formation of sedimentary, igneous, and metamorphic rocks through the rock cycle."
+                },
+                {
+                    code: "SES2.b",
+                    text: "Classify rocks and minerals based on their physical properties."
+                }
+            ],
+            mississippi: [
+                {
+                    code: "E.8A.4",
+                    text: "Use principles of relative dating (superposition, cross-cutting relationships, lateral continuity) to determine sequences of geologic events."
+                },
+                {
+                    code: "E.8A.5",
+                    text: "Analyze and interpret the geologic time scale as a framework for Earth's history."
+                },
+                {
+                    code: "E.8A.6",
+                    text: "Construct explanations for how fossils provide evidence of past life and environmental conditions."
+                }
+            ],
+            north_carolina: [
+                {
+                    code: "EEn.2.1.1",
+                    text: "Explain how processes and forces affect the lithosphere (plate tectonics, volcanic activity, earthquakes, mountain building, metamorphism, weathering, etc.)."
+                },
+                {
+                    code: "EEn.2.1.2",
+                    text: "Predict the locations of volcanoes, earthquakes, and faults based on information contained in a variety of maps."
+                },
+                {
+                    code: "EEn.2.7.1",
+                    text: "Explain how the environment and atmospheric conditions have changed throughout Earth's history."
+                }
+            ],
+            ohio: [
+                {
+                    code: "ES.8",
+                    text: "Earth's crust consists of major and minor tectonic plates that move relative to each other."
+                },
+                {
+                    code: "ES.9",
+                    text: "Most of Earth's surface is covered by a relatively thin layer of rock, sediment and soil."
+                },
+                {
+                    code: "ES.10",
+                    text: "Earth's surface features are continually changed by a combination of slow and rapid processes."
+                }
+            ],
+            pennsylvania: [
+                {
+                    code: "3.5.10-12.B",
+                    text: "Explain how the rock cycle, plate tectonics, and radioactive decay relate to Earth's geological history."
+                },
+                {
+                    code: "3.5.10-12.C",
+                    text: "Analyze how geologic time is estimated through principles of relative and absolute dating."
+                },
+                {
+                    code: "3.5.10-12.D",
+                    text: "Evaluate the significance of geological formations in Pennsylvania."
+                }
+            ],
+            texas: [
+                {
+                    code: "112.36.c.9A",
+                    text: "Evaluate relative dating methods using original horizontality, rock superposition, lateral continuity, cross-cutting relationships, unconformities, index fossils, and biozones."
+                },
+                {
+                    code: "112.36.c.9B",
+                    text: "Calculate the absolute age of igneous and metamorphic rocks using radiometric dating methods."
+                },
+                {
+                    code: "112.36.c.10A",
+                    text: "Examine the evidence for the geologic time scale by investigating rocks and fossils."
+                }
+            ],
+            virginia: [
+                {
+                    code: "ES.8",
+                    text: "The student will investigate and understand how freshwater resources are influenced by geologic processes and the activities of humans."
+                },
+                {
+                    code: "ES.9",
+                    text: "The student will investigate and understand how to read and interpret maps and imagery."
+                },
+                {
+                    code: "ES.11",
+                    text: "The student will investigate and understand that oceans are complex, interactive physical, chemical, and biological systems and are subject to long- and short-term variations."
+                }
+            ]
+        };
+
+        function showStandards() {
+            const select = document.getElementById('stateSelect');
+            const content = document.getElementById('standardsContent');
+            const selectedState = select.value;
+
+            if (!selectedState) {
+                content.innerHTML = '<div class="loading">Select a state to view aligned standards</div>';
+                return;
+            }
+
+            const standards = standardsData[selectedState];
+            let html = `<h3>${select.options[select.selectedIndex].text} - Aligned Standards</h3>`;
+
+            standards.forEach(standard => {
+                html += `
+                    <div class="standard-item">
+                        <div class="standard-code">${standard.code}</div>
+                        <div class="standard-text">${standard.text}</div>
+                    </div>
+                `;
+            });
+
+            content.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
